@@ -159,6 +159,17 @@ namespace StringCalculatorUnitTest
 
             Assert.AreEqual(expected, actual);
         }
+
+        public void StringCalculator_Addition_Valid_MultipleCustomDelimiter()
+        {
+
+            StringCalculator cal = new StringCalculator();
+            string testString = "//[*][!!][r9r]\n11r9r22*hh*33!!44";
+            int actual = cal.Addition(testString);
+            int expected = 110;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 
 }

@@ -8,6 +8,7 @@ namespace StringCalculatorNS
     {
         static void Main(string[] args)
         {
+           
         }
     }
     public class StringCalculator
@@ -56,28 +57,32 @@ namespace StringCalculatorNS
                 //use custom delimiter
                 int dividerIndex = st.IndexOf("\n");
                 string temp = st.Substring(2, dividerIndex-2);
-                string customDlm = string.Empty;
-                bool useCustomDlm = false;
+          
+                List<string> customDlmRange = new List<string>();
                 if (temp.Length == 1)
                 {
-                    useCustomDlm = true;
-                    customDlm = temp;
+                    customDlmRange.Add(temp);
                 }     
                 else if(temp.Length >2)
                 {
-                    if (temp[0] != '[' || temp[temp.Length - 1] != ']') useCustomDlm = false;
-                    else
+
+                    int left = temp.IndexOf('[');
+                    int right = temp.IndexOf(']');
+                    while(left!=-1 && right != -1)
                     {
-                        useCustomDlm = true;
-                        customDlm = temp.Substring(1, temp.Length - 2);
+                        string singleDlm = ParseDelimiter(temp.Substring(left, right - left+1));
+                        customDlmRange.Add(singleDlm);
+                        temp = temp.Substring(right+1);
+                        left = temp.IndexOf('[');
+                        right = temp.IndexOf(']');
                     }
+                    
                 }
-                if (useCustomDlm)
-                {
-                    this.delimiter.Add(customDlm);
-                    string nums = st.Substring(dividerIndex);
-                    return st.Split(this.delimiter.ToArray(), StringSplitOptions.None);
-                }
+               
+                this.delimiter.AddRange(customDlmRange);
+                string nums = st.Substring(dividerIndex);
+                return st.Split(this.delimiter.ToArray(), StringSplitOptions.None);
+                
             }
            
             return st.Split(delimiter, StringSplitOptions.None);
@@ -132,6 +137,20 @@ namespace StringCalculatorNS
             }
 
         }
-      
+
+        private string ParseDelimiter(string customSt)
+        {
+            if (customSt[0] != '[' || customSt[customSt.Length - 1] != ']')
+            {
+                return null;
+            }
+            else
+            {
+               
+                return customSt.Substring(1, customSt.Length - 2);
+            }
+        }
+
+
     }
 }

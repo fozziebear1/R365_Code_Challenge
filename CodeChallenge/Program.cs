@@ -8,14 +8,14 @@ namespace StringCalculatorNS
     {
         static void Main(string[] args)
         {
-           
+         
         }
     }
     public class StringCalculator
     {
 
         //req3 private readonly string[] delimiter = { ","};
-        private readonly string[] delimiter = { ",", "\n" };
+        private List<string> delimiter;
         private readonly int MaxiumnNumber = 1000;
         public const string MaximumTwoNumberMessage = "Should provide no more than 2 numbers";
         public const string NotAllowNegativeNumberMessage = "Should provide no negative numbers.The input includes:";
@@ -25,11 +25,15 @@ namespace StringCalculatorNS
         {
             negNumbers = new List<int>();
             allNumbers = new List<int>();
+            delimiter = new List<string>();
+            delimiter.Add(",");
+            delimiter.Add("\n");
+           
         }
 
         public int Addition(string st)
         {
-            string[] nums = ParseString(st, delimiter);
+            string[] nums = ParseString(st, delimiter.ToArray());
            
             /*removed for req2
              checkCountOfNums(nums); */
@@ -48,6 +52,19 @@ namespace StringCalculatorNS
 
         public string[] ParseString(string st, string[] delimiter)
         {
+            if (st.StartsWith("//"))
+            {
+                //use custom delimiter
+                int dividerIndex = st.IndexOf("\n");
+                string customDlm = st.Substring(2, dividerIndex-2);
+                if (customDlm.Length == 1)
+                {
+                    this.delimiter.Add(customDlm);
+                    string nums = st.Substring(dividerIndex);
+                    return st.Split(this.delimiter.ToArray(), StringSplitOptions.None);
+                }
+            }
+           
             return st.Split(delimiter, StringSplitOptions.None);
         }
 

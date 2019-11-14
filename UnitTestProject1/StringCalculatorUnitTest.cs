@@ -123,6 +123,18 @@ namespace StringCalculatorUnitTest
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void StringCalculator_Addition_Valid_PassSingleCustomDelimiter()
+        {
+
+            StringCalculator cal = new StringCalculator();
+            string testString = "//,\n2,ff,100";
+            int actual = cal.Addition(testString);
+            int expected = 102;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 
 }

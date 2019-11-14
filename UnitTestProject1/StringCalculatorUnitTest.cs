@@ -6,7 +6,7 @@ namespace StringCalculatorUnitTest
     [TestClass]
     public class StringCalculatorUnitTest
     {
-        [TestMethod]
+        
         public void StringCalculator_Addition_Valid_WithTwoNumber()
         {
 
@@ -87,6 +87,28 @@ namespace StringCalculatorUnitTest
             int expected = 8;
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void StringCalculator_Addition_Invalid_NoNegativeNumberAllowed()
+        {
+            // Arrange
+            StringCalculator cal = new StringCalculator();
+            string testString = "1,-1,-2,-4,5";
+
+            // Act
+            try
+            {
+                cal.Addition(testString);
+            }
+            catch (System.ArgumentException e)
+            {
+                // Assert
+                StringAssert.Contains(e.Message, StringCalculator.NotAllowNegativeNumberMessage);
+                return;
+            }
+
+            Assert.Fail("The expected exception was not thrown.");
         }
     }
 }

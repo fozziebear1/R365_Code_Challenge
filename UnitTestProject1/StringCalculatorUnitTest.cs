@@ -135,6 +135,30 @@ namespace StringCalculatorUnitTest
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void StringCalculator_Addition_Valid_PassSingleCustomDelimiterAnyLength()
+        {
+
+            StringCalculator cal = new StringCalculator();
+            string testString = "//[***]\n11***22***33";
+            int actual = cal.Addition(testString);
+            int expected = 66;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void StringCalculator_Addition_Valid_PassSingleCustomDelimiterMoreThanOneChar()
+        {
+
+            StringCalculator cal = new StringCalculator();
+            string testString = "//[***]\n11***22***33";
+            int actual = cal.Addition(testString);
+            int expected = 66;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 
 }

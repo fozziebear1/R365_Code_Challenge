@@ -8,7 +8,6 @@ namespace StringCalculatorNS
     {
         static void Main(string[] args)
         {
-         
         }
     }
     public class StringCalculator
@@ -56,8 +55,24 @@ namespace StringCalculatorNS
             {
                 //use custom delimiter
                 int dividerIndex = st.IndexOf("\n");
-                string customDlm = st.Substring(2, dividerIndex-2);
-                if (customDlm.Length == 1)
+                string temp = st.Substring(2, dividerIndex-2);
+                string customDlm = string.Empty;
+                bool useCustomDlm = false;
+                if (temp.Length == 1)
+                {
+                    useCustomDlm = true;
+                    customDlm = temp;
+                }     
+                else if(temp.Length >2)
+                {
+                    if (temp[0] != '[' || temp[temp.Length - 1] != ']') useCustomDlm = false;
+                    else
+                    {
+                        useCustomDlm = true;
+                        customDlm = temp.Substring(1, temp.Length - 2);
+                    }
+                }
+                if (useCustomDlm)
                 {
                     this.delimiter.Add(customDlm);
                     string nums = st.Substring(dividerIndex);

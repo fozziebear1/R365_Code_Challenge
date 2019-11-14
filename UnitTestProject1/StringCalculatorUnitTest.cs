@@ -110,5 +110,19 @@ namespace StringCalculatorUnitTest
 
             Assert.Fail("The expected exception was not thrown.");
         }
+
+
+        [TestMethod]
+        public void StringCalculator_Addition_Valid_GreaterThanMaxIsZero()
+        {
+
+            StringCalculator cal = new StringCalculator();
+            string testString = "2,1001,6";
+            int actual = cal.Addition(testString);
+            int expected = 8;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
+
 }

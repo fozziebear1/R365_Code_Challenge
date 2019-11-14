@@ -16,6 +16,7 @@ namespace StringCalculatorNS
 
         //req3 private readonly string[] delimiter = { ","};
         private readonly string[] delimiter = { ",", "\n" };
+        private readonly int MaxiumnNumber = 1000;
         public const string MaximumTwoNumberMessage = "Should provide no more than 2 numbers";
         public const string NotAllowNegativeNumberMessage = "Should provide no negative numbers.The input includes:";
         private List<int> negNumbers;
@@ -79,6 +80,7 @@ namespace StringCalculatorNS
                 if (Int32.TryParse(st, out x))
                 {
                     if (x < 0) negNumbers.Add(x);
+                    if(x> MaxiumnNumber) continue;
                     allNumbers.Add(x);
                 }
                 

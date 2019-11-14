@@ -7,7 +7,7 @@ namespace StringCalculatorNS
     {
         static void Main(string[] args)
         {
-            
+          
         }
     }
     public class StringCalculator
@@ -22,7 +22,9 @@ namespace StringCalculatorNS
         public int Addition(string st)
         {
             string[] nums = ParseString(st, delimiter);
-            checkCountOfNums(nums);
+           
+            /*removed for req2
+             checkCountOfNums(nums); */
             int temp = 0;
             foreach (string s in nums)
             {

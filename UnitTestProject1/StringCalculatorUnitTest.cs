@@ -41,8 +41,9 @@ namespace StringCalculatorUnitTest
 
             Assert.AreEqual(expected, actual);
         }
-
-        [TestMethod]
+/// <summary>
+/// req1 
+/// </summary>
         public void StringCalculator_Addition_Invalid_WithMoreThanTwoNumbers()
         {
             // Arrange
@@ -64,5 +65,16 @@ namespace StringCalculatorUnitTest
             Assert.Fail("The expected exception was not thrown.");
         }
 
+        [TestMethod]
+        public void StringCalculator_Addition_Valid_WithMoreThanTwoNumbers()
+        {
+            
+            StringCalculator cal = new StringCalculator();
+            string testString = "1,2,3,4,5,6,7,8,9,10,11,12";
+            int actual = cal.Addition(testString);
+            int expected = 78;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

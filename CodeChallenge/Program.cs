@@ -12,8 +12,9 @@ namespace StringCalculatorNS
     }
     public class StringCalculator
     {
-       
-        private readonly string[] delimiter = { ","};
+
+        //req3 private readonly string[] delimiter = { ","};
+        private readonly string[] delimiter = { ",", "\n" };
         public const string MaximumTwoNumberMessage = "Should provide no more than 2 numbers";
         public StringCalculator()
         {

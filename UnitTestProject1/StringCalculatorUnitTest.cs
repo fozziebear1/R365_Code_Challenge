@@ -76,5 +76,17 @@ namespace StringCalculatorUnitTest
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void StringCalculator_Addition_Valid_NewlineAsdelimiter()
+        {
+
+            StringCalculator cal = new StringCalculator();
+            string testString = "1\n2,5";
+            int actual = cal.Addition(testString);
+            int expected = 8;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
